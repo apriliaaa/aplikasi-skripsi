@@ -1,16 +1,8 @@
 <x-app-layout>
-
-
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
 
         <h5 class="text-white mx-3">Data Admin</h5>
     </header>
-
-    <div class="page-title">
-
-    </div>
-
 
     <section class="section">
         <div class="row" id="table-bordered">
@@ -18,7 +10,6 @@
                 <div class="card p-4">
 
                     <div class="card-content">
-
                         <!-- table bordered -->
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0" id="myTable">
@@ -52,29 +43,18 @@
                                                     <i class="bi bi-trash3-fill"></i>
                                                 </button>
                                             </form>
-
                                         </td>
                                     </tr>
-
                                     @endforeach
-
                                 </tbody>
                             </table>
                             {{ $admin->appends(['search' => request()->query('search')])->links() }}
                         </div>
                     </div>
-
-
                 </div>
-
-
             </div>
-
-
     </section>
 
-
-    </script>
     <script>
         $('.show-alert-delete-box').click(function(event) {
             var form = $(this).closest("form");

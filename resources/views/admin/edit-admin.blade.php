@@ -1,16 +1,7 @@
 <x-app-layout>
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
-
         <h5 class="text-white mx-3">Edit Data Admin</h5>
-
     </header>
-
-
-    <div class="page-title">
-
-    </div>
 
     @if (session('status'))
     <div class="mb-4 font-medium text-sm text-green-600">
@@ -28,16 +19,15 @@
                     <h4 class="card-title">Edit Admin</h4>
                 </div>
                 <div class="card-body">
-
                     <x-jet-validation-errors class="alert alert-danger" />
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="programStudi">Program Studi</label>
                                 <select disabled class="form-select" id="id_prodi" name="id_prodi">
                                     <option disabled value>Pilih Program Studi</option>
-                                    <option value="{{ $admin->id_prodi }}">{{ $admin->program_studi->nama_prodi }}</option>
+                                    <option value="{{ $admin->id_prodi }}">{{ $admin->program_studi->nama_prodi }}
+                                    </option>
 
                                     @foreach ($program_studi as $key=>$item)
                                     <option value="{{ $item->id }}">{{ $item->nama_prodi }}</option>
@@ -47,7 +37,8 @@
 
                             <div class="form-group">
                                 <label for="basicInput">Nama Admin</label>
-                                <input disabled type="text" name="name" class="form-control" id="basicInput" placeholder="" value="{{ $admin->name }}">
+                                <input disabled type="text" name="name" class="form-control" id="basicInput"
+                                    placeholder="" value="{{ $admin->name }}">
                             </div>
                         </div>
 
@@ -55,7 +46,8 @@
                             <div class="form-group">
                                 <label for="basicInput">E-mail</label>
                                 <small class="text-muted">eg.<i>someone@example.com</i></small>
-                                <input disabled type="e-mail" name="email" class="form-control" id="basicInput" placeholder="" value="{{ $admin->email }}">
+                                <input disabled type="e-mail" name="email" class="form-control" id="basicInput"
+                                    placeholder="" value="{{ $admin->email }}">
                             </div>
 
                             <div class="form-group">
@@ -76,7 +68,6 @@
                                 </select>
                             </div>
 
-
                         </div>
                         <div class="col-sm-12 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary me-1 mb-1">Ubah</button>
@@ -87,8 +78,4 @@
             </div>
         </form>
     </section>
-
-
-
-
 </x-app-layout>

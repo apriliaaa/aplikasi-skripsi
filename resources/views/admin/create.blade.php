@@ -1,17 +1,10 @@
 <x-app-layout>
-
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
         <h5 class="text-white mx-3">Tambah Data Admin</h5>
     </header>
 
-
     <div class="page-title">
-
     </div>
-
-
     @if (session('status'))
     <div class="mb-4 font-medium text-sm text-green-600">
         {{ session('status') }}
@@ -69,8 +62,4 @@
             </div>
         </form>
     </section>
-
-
-
-
 </x-app-layout>

@@ -19,9 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 </head>
 
-
 <body>
-
     @include('sweetalert::alert')
 
     <div id="app">
@@ -87,8 +85,6 @@
                                 <li class="submenu-item {{(Request::routeIs('admin.data')) ? 'active' : ''}}">
                                     <a href="{{route('admin.data')}}">Data Admin</a>
                                 </li>
-
-
                             </ul>
                         </li>
                         @endif
@@ -105,11 +101,10 @@
                                 <li class="submenu-item {{(Request::routeIs('dosen.data')) ? 'active' : ''}}">
                                     <a href="{{route('dosen.data')}}">Data Dosen</a>
                                 </li>
-
-
                             </ul>
                         </li>
                         @endif
+
                         @if (auth()->user()->role === "SuperAdmin")
                         <li class="sidebar-item  {{(Request::routeIs('prodi')) ? 'active' : ''}}">
                             <a href="{{route('prodi')}}" class='sidebar-link'>
@@ -177,9 +172,6 @@
                                 <button class="sidebar-link btn"><i class="bi bi-box-arrow-left me-3"></i> Logout</button>
                             </form>
                         </li>
-
-
-
                     </ul>
                 </div>
             </div>

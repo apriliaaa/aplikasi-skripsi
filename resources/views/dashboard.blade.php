@@ -17,10 +17,7 @@
                 <div id="area"></div>
 
             </div>
-
-
-
-
+            
             <div class="card-body">
                 <div class="p total-pelanggaran"></div>
             </div>

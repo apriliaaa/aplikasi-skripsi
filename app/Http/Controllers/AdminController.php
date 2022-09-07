@@ -27,8 +27,6 @@ class AdminController extends Controller
                 ->orWhere('role', 'LIKE', '%' . $request->search . '%')
                 ->paginate(10);
         } else {
-            // $admin = User::with('program_studi')->paginate(10);
-            // $admin   = DB::table('users')->where('role', 'Admin')->get();
             $admin = User::with('program_studi')->where('role', 'Admin')->paginate(10);
         }
 
