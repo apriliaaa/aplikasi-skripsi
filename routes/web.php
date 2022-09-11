@@ -93,7 +93,7 @@ Route::middleware(['auth:sanctum', 'superAdmin'])->get('/cetak-laporan/prodi/', 
 Route::middleware('auth:sanctum')->put('/user/profile/info', [AdminController::class, "updateUserInfo"])->name('update.user.info');
 Route::middleware('auth:sanctum')->put('/user/profile/auth', [AdminController::class, "updateUserAuth"])->name('update.user.auth');
 
-
+// for hosting without ssh
 Route::get('reset', function () {
     Artisan::call('route:clear');
     Artisan::call('cache:clear');

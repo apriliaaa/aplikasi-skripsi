@@ -63,8 +63,8 @@
             var name = $(this).data("name");
             event.preventDefault();
             swal({
-                title: "Yakin ni mau balikin barang sitaannya?",
-                text: "Pastiin dulu si bangsat ini ga ngulangin pelanggarannya.",
+                title: "Apakah anda ingin menghapus data ini?",
+                text: "Jika anda menghapus data ini, data akan dihapus permanent.",
                 icon: "warning",
                 type: "warning",
                 buttons: ["Tidak", "Iya"],
