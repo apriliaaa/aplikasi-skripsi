@@ -1,17 +1,8 @@
 <x-app-layout>
-
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
-
         <h5 class="text-white mx-3">Dokumen Disita</h5>
-
     </header>
 
-    <div class="page-title">
-
-
-    </div>
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -31,8 +22,6 @@
                             <button type="submit" class="btn btn-primary mb-3">Save</button>
                         </div>
                 </form>
-
-
             </div>
         </div>
     </section>
@@ -41,19 +30,7 @@
         <div class="row" id="table-bordered">
             <div class="col-12">
                 <div class="card p-4">
-                    {{-- <div class="card-header">
-                                <h4 class="card-title">Bordered table</h4>
-                            </div> --}}
                     <div class="card-content">
-
-                        {{-- <div class="card-body">
-                                    <p class="card-text">Add <code>.table-bordered</code> for borders on all sides of the table
-                                        and
-                                        cells. For
-                                        Inverse Dark Table, add <code>.table-dark</code> along with
-                                        <code>.table-bordered</code>.
-                                    </p>
-                                </div> --}}
                         <!-- table bordered -->
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0" id="myTable">
@@ -61,9 +38,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Item Disita</th>
-                                        {{-- <th>Program Studi</th>
-                                                <th>E-mail / Username</th>
-                                                <th>Role</th> --}}
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -72,9 +46,6 @@
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama_item }}</td>
-                                        {{-- <td>{{ $item->program_studi->nama_prodi }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->role }}</td> --}}
                                         <td class="text-center">
 
                                             <form method="POST" action="{{ route('dokumen.delete', $item->id) }}">
@@ -89,12 +60,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-
     </section>
 
     <script type="text/javascript">

@@ -1,12 +1,7 @@
 <x-app-layout>
-
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
-
         <h5 class="text-white mx-3">Mahasiswa</h5>
     </header>
-
 
     @if (session('status'))
     <div class="mb-4 font-medium text-sm text-green-600">
@@ -23,14 +18,13 @@
                     <h4 class="card-title">Input Pelanggaran Mahasiswa</h4>
                 </div>
                 <div class="card-body">
-
                     <x-jet-validation-errors class="alert alert-danger" />
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">NIM</label>
-                                <input type="text" onkeyup="getData()" name="nim" class="form-control" id="nim" placeholder="">
+                                <input type="text" onkeyup="getData()" name="nim" class="form-control" id="nim"
+                                    placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Nama Mahasiswa</label>
@@ -39,11 +33,9 @@
 
                             <div class="form-group">
                                 <label for="basicInput">Dosen Penanggungjawab</label>
-                                {{-- <select class="form-select" name="id_user" id="id_user" disabled>
-                                            <option value="{{ $id_user }}">{{ $nama_user }}</option>
-                                </select> --}}
                                 <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
-                                <input type="text" name="nama_dosen" class="form-control" id="basicInput" placeholder="" value="{{ Auth::user()->name }}" disabled readonly>
+                                <input type="text" name="nama_dosen" class="form-control" id="basicInput" placeholder=""
+                                    value="{{ Auth::user()->name }}" disabled readonly>
                                 <input type="hidden" name="id_prodi" value="{{ Auth::user()->id_prodi }}">
                             </div>
                         </div>
@@ -83,38 +75,29 @@
                             </div>
 
                             <input type="hidden" id="foto" name="foto" value="" />
-
-
-
-
                         </div>
-                        <p>
-                            {{-- <button type="button" onclick="startWebcam();">Start WebCam</button> --}}
-                            {{-- <button type="button" onclick="stopWebcam();">Stop WebCam</button> 
-                                    <button type="button" onclick="snapshot();">Take Snapshot</button>  --}}
-                        </p>
+
                         <div class="row gx-0">
-                            <video class="d-none col-md-6 col-11 mx-auto" onclick="snapshot(this);" id="video" autoplay></video>
+                            <video class="d-none col-md-6 col-11 mx-auto" onclick="snapshot(this);" id="video"
+                                autoplay></video>
                         </div>
-                        
-                        
+
                         <p class="d-none text-center" id="ss">Hasil Gambar :
-                        <p>
-                            <canvas class="d-none mx-auto" id="myCanvas" width="400" height="300"></canvas>
-                        <div class="col-12 text-center">
-                            
-                            <button type="button" class=" btn btn-success d-none" id="buttonSnap" onclick="snapshot()">Ambil Gambar</button>
-                            
-                        </div>
-                        
-                        <div class="col-sm-12 d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary  mb-1 me-2" onclick="startWebcam()">Buka
-                                Kamera</button>
-                            <button type="submit" class="btn btn-success mb-1">Save</button>
-                        </div>
+                            <p>
+                                <canvas class="d-none mx-auto" id="myCanvas" width="400" height="300"></canvas>
+                                <div class="col-12 text-center">
+                                    <button type="button" class=" btn btn-success d-none" id="buttonSnap"
+                                        onclick="snapshot()">Ambil Gambar</button>
+                                </div>
+
+                                <div class="col-sm-12 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary  mb-1 me-2"
+                                        onclick="startWebcam()">Buka
+                                        Kamera</button>
+                                    <button type="submit" class="btn btn-success mb-1">Save</button>
+                                </div>
                     </div>
                 </div>
-
         </form>
     </section>
 
@@ -126,27 +109,26 @@
         function startWebcam() {
             document.getElementById('video').classList.remove('d-none')
             document.getElementById('video').classList.add('d-block')
-            
+
             document.getElementById('buttonSnap').classList.add('d-md-inline')
-            
+
             if (navigator.getUserMedia) {
                 navigator.getUserMedia(
-
                     // constraints
                     {
-                        video: {facingMode: 'environment'},
+                        video: {
+                            facingMode: 'environment'
+                        },
                         audio: false
                     },
-
                     // successCallback
-                    function(localMediaStream) {
+                    function (localMediaStream) {
                         video = document.querySelector('video');
                         video.srcObject = localMediaStream;
                         webcamStream = localMediaStream;
                     },
-
                     // errorCallback
-                    function(err) {
+                    function (err) {
                         console.log("The following error occured: " + err);
                     }
                 );
@@ -197,7 +179,7 @@
                     nim: nim
                 },
                 dataType: "json",
-                success: function(response) {
+                success: function (response) {
                     console.log(response)
                     if (response) {
                         $('#name').val(`${response.name}`).prop('readonly', true)

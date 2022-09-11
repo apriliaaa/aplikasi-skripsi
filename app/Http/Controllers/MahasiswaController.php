@@ -97,41 +97,25 @@ class MahasiswaController extends Controller
 
         $request->validate($rules, $text);
 
-
         $nim = $request->nim;
 
         $mahasiswaLength = Mahasiswa::where('nim', $nim)->count();
         if ($mahasiswaLength > 0) {
-            // $mahasiswaLength = Mahasiswa::where('nim', $nim)->first();
             // dd();
             $id = Mahasiswa::where('nim', $nim)->first()->id;
         } else {
-
             // create mahasiswa
-
             $mahasiswa = Mahasiswa::create([
                 'name' => $request->name,
                 'nim' => $request->nim,
                 'id_prodi' => $request->id_prodi,
-                // 'id_user' => $request->id_user,
-                // 'id_pelanggaran' => $request->id_pelanggaran,
-                // 'id_item' => $request->id_item,
-                // 'foto' => $imageName,
-
             ]);
 
             // get 1 data mahasiswa paling baru
             $mahasiswa_get = Mahasiswa::orderBy('id', 'desc')->limit(1)->first();
             $id = $mahasiswa_get->id;
         }
-
-
-
-
         // dd($mahasiswa);
-
-
-
 
         // create daftar pelanggaran
         // taruh id dari mhs terbaru
@@ -144,28 +128,11 @@ class MahasiswaController extends Controller
             'foto' => $imageName,
         ]);
 
-
         if ($daftar_pelanggaran) {
             Storage::disk('public')->put($imageName, base64_decode($image));
             Alert::toast('Berhasil menambahkan data pelanggaran.', 'success');
             return redirect()->route('mahasiswa.create');
         }
-
-
-        // $mahasiswa = Mahasiswa::create($request->all());
-
-        // $pelanggaran = $request->input('id_pelanggaran');
-        // $user = $request->input('id_user');
-
-
-        // $mahasiswa->pelanggaran()->attach($request->input('id_pelanggaran'));
-        // $mahasiswa->user()->attach($request->input('id_user'));
-
-
-        // if ($mahasiswa) {
-        //     Storage::disk('local')->put($imageName, base64_decode($image));
-        //     return redirect()->route('mahasiswa.create')->with('success', 'Data berhasil disimpan!');
-        // }
     }
 
     /**
@@ -244,11 +211,13 @@ class MahasiswaController extends Controller
         if (Auth()->user()->role === "SuperAdmin") {
             $nama_prodi = ProgramStudi::where('id', $request->input('id_prodi'))->first();
             if ($request->input('id_prodi')) {
-                return Excel::download(new PelanggaranDetailPerProdiExport($request->input('id_prodi')), 'pelanggaran-' . $nama_prodi->nama_prodi . '.xlsx');
+                return Excel::download(new PelanggaranDetailPerProdiExport($request->input('id_prodi')), 
+                        'pelanggaran-' . $nama_prodi->nama_prodi . '.xlsx');
             }
             return Excel::download(new PelanggaranDetailExport(), 'pelanggaran-all.xlsx');
         } else {
-            return Excel::download(new PelanggaranDetailExport(), 'pelanggaran-' . Auth()->user()->program_studi->nama_prodi . '.xlsx');
+            return Excel::download(new PelanggaranDetailExport(), 'pelanggaran-' . 
+                            Auth()->user()->program_studi->nama_prodi . '.xlsx');
         }
     }
 
@@ -258,7 +227,8 @@ class MahasiswaController extends Controller
     {
 
         $nama_prodi = ProgramStudi::all();
-        $program_studi = DaftarPelanggaran::withTrashed()->groupBy('id_prodi')->select('id_prodi', DB::raw('count(*) as total'))->get();
+        $program_studi = DaftarPelanggaran::withTrashed()->groupBy('id_prodi')
+                        ->select('id_prodi', DB::raw('count(*) as total'))->get();
         return view('laporan.laporan-prodi', compact('program_studi', 'nama_prodi'));
     }
 
@@ -269,14 +239,14 @@ class MahasiswaController extends Controller
 
     public function mahasiswaReport(Request $request)
     {
-
-
         $prodi = ProgramStudi::all();
         if (Auth()->user()->role === "Admin") {
             $mahasiswa = DaftarPelanggaran::withTrashed()->where('id_prodi', Auth()->user()->id_prodi);
         } else if (Auth()->user()->role === "SuperAdmin") {
             if ($request->input('id')) {
-                $mahasiswa = DaftarPelanggaran::withTrashed()->where('id_prodi', $request->input('id'))->with(['mahasiswa', 'mahasiswa.program_studi'])->groupBy('id_mahasiswa')->select('id_mahasiswa', DB::raw('count(*) as total'))->get();
+                $mahasiswa = DaftarPelanggaran::withTrashed()->where('id_prodi', $request->input('id'))
+                            ->with(['mahasiswa', 'mahasiswa.program_studi'])->groupBy('id_mahasiswa')
+                            ->select('id_mahasiswa', DB::raw('count(*) as total'))->get();
 
                 return json_encode($mahasiswa);
             }
@@ -292,9 +262,7 @@ class MahasiswaController extends Controller
 
     // Cetak laporan mahasiswa
     public function mahasiswaReportExport($prodi)
-    {
-        // $cetakMhs = DaftarPelanggaran::groupBy('id_mahasiswa')->select('id_mahasiswa', DB::raw('count(*) as total'))->get();
-        // return view('print-laporan.laporan-mahasiswa', compact('cetakMhs'));
+    {        
         if (Auth()->user()->role === "SuperAdmin") {
             return Excel::download(new PelanggaranExport(), 'pelanggaran-all.xlsx');
         } else {
@@ -307,18 +275,14 @@ class MahasiswaController extends Controller
     {
         $id_prodi = $request->input('id_prodi');
         $prodi = ProgramStudi::where('id', $id_prodi)->first();
-        // $cetakMhs = DaftarPelanggaran::groupBy('id_mahasiswa')->select('id_mahasiswa', DB::raw('count(*) as total'))->get();
-        // return view('print-laporan.laporan-mahasiswa', compact('cetakMhs'));
 
         return Excel::download(new PelanggaranPerProdiExport($id_prodi), 'pelanggaran-' . $prodi->nama_prodi . '.xlsx');
     }
 
-
-
+    // Cek data nim dan menampilkan data
     public function getByName(Request $request)
     {
         $nim = $request->input('nim');
-
 
         $mahasiswa = Mahasiswa::where('nim', $nim)->first();
         echo json_encode($mahasiswa);

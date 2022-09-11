@@ -1,28 +1,13 @@
 <x-app-layout>
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
-
         <h5 class="text-white mx-3">Data pelanggaran Mahasiswa</h5>
     </header>
-
 
     <section class="section">
         <div class="row" id="table-bordered">
             <div class="col-12">
                 <div class="card p-4">
-                    {{-- <div class="card-header">
-                                <h4 class="card-title">Bordered table</h4>
-                            </div> --}}
                     <div class="card-content">
-                        {{-- <div class="card-body">
-                                    <p class="card-text">Add <code>.table-bordered</code> for borders on all sides of the table
-                                        and
-                                        cells. For
-                                        Inverse Dark Table, add <code>.table-dark</code> along with
-                                        <code>.table-bordered</code>.
-                                    </p>
-                                </div> --}}
                         <!-- table bordered -->
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0" id="myTable">
@@ -43,7 +28,8 @@
                                         <td>{{ $list->mahasiswa->nim }}</td>
                                         <td>{{ $list->mahasiswa->name }}</td>
                                         <td>
-                                            <img src="{{ asset('storage/'.$list->foto) }}" alt="" style="height: 100px; width: 150px;">
+                                            <img src="{{ asset('storage/'.$list->foto) }}" alt=""
+                                                style="height: 100px; width: 150px;">
                                         </td>
                                         <td>{{ $list->pelanggaran->nama_pelanggaran }}</td>
                                         <td>{{ $list->item->nama_item }}</td>
@@ -62,7 +48,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -73,7 +58,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script type="text/javascript">
-        $('.show-alert-delete-box').click(function(event) {
+        $('.show-alert-delete-box').click(function (event) {
             var form = $(this).closest("form");
             var name = $(this).data("name");
             event.preventDefault();

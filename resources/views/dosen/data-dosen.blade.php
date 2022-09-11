@@ -1,32 +1,14 @@
 <x-app-layout>
 
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
         <h5 class="text-white mx-3">Data Dosen</h5>
-
     </header>
-
-    <div class="page-title">
-
-    </div>
 
     <section class="section">
         <div class="row" id="table-bordered">
             <div class="col-12">
                 <div class="card p-4">
-                    {{-- <div class="card-header">
-                                <h4 class="card-title">Bordered table</h4>
-                            </div> --}}
                     <div class="card-content">
-                        {{-- <div class="card-body">
-                                    <p class="card-text">Add <code>.table-bordered</code> for borders on all sides of the table
-                                        and
-                                        cells. For
-                                        Inverse Dark Table, add <code>.table-dark</code> along with
-                                        <code>.table-bordered</code>.
-                                    </p>
-                                </div> --}}
                         <!-- table bordered -->
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0" id="myTable">
@@ -58,7 +40,8 @@
                                             <form method="POST" action="{{ route('dosen.delete', $item->id) }}">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="DELETE">
-                                                <button type="submit" class="btn btn-danger show-alert-delete-box" data-toggle="tooltip" title='Delete'>
+                                                <button type="submit" class="btn btn-danger show-alert-delete-box"
+                                                    data-toggle="tooltip" title='Delete'>
                                                     <i class="bi bi-trash3-fill"></i>
                                                 </button>
                                             </form>
@@ -71,7 +54,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -81,7 +63,7 @@
 
 
     <script type="text/javascript">
-        $('.show-alert-delete-box').click(function(event) {
+        $('.show-alert-delete-box').click(function (event) {
             var form = $(this).closest("form");
             var name = $(this).data("name");
             event.preventDefault();

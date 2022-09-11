@@ -24,9 +24,6 @@ class DosenController extends Controller
         if ($auth->role === 'SuperAdmin') {
             $dosen = User::where('role', 'Dosen')->paginate(10);
         }
-
-        // memanggil data dosen
-        // $dosen = Dosen::with('program_studi')->paginate(10);
         return view('dosen.data-dosen', compact('dosen'));
     }
 
@@ -40,7 +37,6 @@ class DosenController extends Controller
     {
         // memanggil data program studi
         $program_studi = ProgramStudi::all();
-
         return view('dosen.create-dosen', compact('program_studi'));
     }
 
@@ -123,15 +119,10 @@ class DosenController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-
             'role' => 'required',
-
         ];
-
         $text = [
-
             'role.required' => 'Jabatan harus diisi.',
-
         ];
 
         $request->validate($rules, $text);

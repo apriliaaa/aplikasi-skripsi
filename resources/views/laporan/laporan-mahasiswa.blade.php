@@ -1,31 +1,11 @@
 <x-app-layout>
-
     <header class="navbar navbar-expand navbar-light bg-primary mb-3">
-
         <h5 class="text-white mx-3">Laporan</h5>
-
     </header>
 
-    <div class="page-title">
-        {{-- <div class="row">
-                     <div class="col-12 col-md-6 order-md-1 order-last">
-                         <h3>Layout Dezfault</h3>
-                     </div>
-                     <div class="col-12 col-md-6 order-md-2 order-first">
-                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                             <ol class="breadcrumb">
-                                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                 <li class="breadcrumb-item active" aria-current="page">Layout Default</li>
-                             </ol>
-                         </nav>
-                     </div>
-                 </div> --}}
-    </div>
     <section class="section">
         <div class="card">
-
             <div class="card-body">
-
                 <form method="post" action="{{ route('cetak.mahasiswa.prodi')}}" class="d-block d-md-flex justify-content-end">
                     @csrf()
                     @if(Auth()->user()->role === 'SuperAdmin')
@@ -53,11 +33,8 @@
                         <a href="{{ route('cetak.mahasiswa', [$mahasiswa[0]->mahasiswa->program_studi->nama_prodi]) }}" target="_blank" class="btn btn-primary">Cetak <i class="fa-solid fa-print"></i></a>
                         @endif
                     </div>
-                    
                 </form>
-
             </div>
-
         </div>
     </section>
 
@@ -65,9 +42,7 @@
         <div class="row" id="table-bordered">
             <div class="col-12">
                 <div class="card p-4">
-
                     <div class="card-content ">
-
                         <!-- table bordered -->
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0" id="myTable">
@@ -88,24 +63,14 @@
                                         <td>{{ $item->mahasiswa->nim }}</td>
                                         <td>{{ $item->mahasiswa->program_studi->nama_prodi }}</td>
                                         <td>{{ $item->total }}</td>
-
                                     </tr>
-
                                     @endforeach
-
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
-
-
                 </div>
-
-
             </div>
-
-
     </section>
 
     <script>
@@ -127,16 +92,12 @@
                                 <td>${val.mahasiswa.program_studi.nama_prodi}</td>
                                 <td>${val.total}</td>
                             </tr>
-
                         `)
-
                     })
 
                     if (data.length < 1) {
                         $('.pelanggaran').html('')
-
                     }
-
                 }
             })
         }

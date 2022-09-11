@@ -5,10 +5,6 @@
         <h5 class="text-white mx-3">Data Dosen</h5>
     </header>
 
-
-    {{-- <div class="page-title">
-             </div> --}}
-
     @if (session('status'))
     <div class="mb-4 font-medium text-sm text-green-600">
         {{ session('status') }}
@@ -29,22 +25,14 @@
 
                     <div class="row">
                         <div class="col-md-6">
-
-
-
                             @if(auth()->user()->role === "Admin")
                             <div class="form-group">
                                 <label for="programStudi">Program Studi</label>
                                 {{-- <input type="text" name="id_prodi" value="{{ Auth::user()->id_prodi }}"> --}}
                                 <select class="form-select" name="id_prodi" id="id_prodi" disabled>
-                                    <option value="{{ auth()->user()->id_prodi }}">{{ Auth::user()->program_studi->nama_prodi }}</option>
+                                    <option value="{{ auth()->user()->id_prodi }}">
+                                        {{ Auth::user()->program_studi->nama_prodi }}</option>
                                 </select>
-                                {{-- <select class="form-select" id="id_prodi" name="id_prodi">
-                                            <option value="">Pilih Program Studi</option>
-                                            @foreach ($program_studi as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama_prodi }}</option>
-                                @endforeach
-                                </select> --}}
                             </div>
                             @endif
 
@@ -83,8 +71,6 @@
                         </div>
                     </div>
                 </div>
-
-
         </form>
     </section>
 
